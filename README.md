@@ -45,7 +45,7 @@ ssh -p remote_port root@server_addr
 docker logs frpc
 ```
 
-# 2. openvpn
+# 2. openvpn(不稳定)
 ## 2.1. docker 运行openvpn
 ```bash
 ## 创建一个路径用来保存配置文件和证书
@@ -96,5 +96,19 @@ remote_port = 1194
 [openvpn](https://openvpn.net/vpn-client/)
 
 将生成的客户端证书`CLIENTNAME.ovpn`导入进行测试。
+
+# 3. socks5
+frpc.ini 增加以下内容
+
+```html
+[plugin_socks5_backup]
+type = tcp
+remote_port = 5006
+plugin = socks5
+#plugin_user = admin
+#plugin_passwd = admin
+use_encryption =true
+use_compression =true
+```
 
 
